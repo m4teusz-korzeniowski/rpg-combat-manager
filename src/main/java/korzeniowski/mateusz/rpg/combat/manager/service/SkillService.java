@@ -34,9 +34,31 @@ public class SkillService {
                 .orElseThrow(() -> new ResourceNotFoundException("Skill with name: " + name + " not found!"));
     }
 
+    public SkillTemplateDto getSkillTemplateById(String id) {
+        return skillTemplateRepository.findById(id)
+                .map(skillMapper::map)
+                .orElseThrow(() -> new ResourceNotFoundException("Skill with id: " + id + " not found!"));
+    }
+
     public SkillTemplateDto createSkillTemplate(SkillTemplateDto dto) {
         SkillTemplate skill = skillMapper.map(dto);
         SkillTemplate saved = skillTemplateRepository.save(skill);
         return skillMapper.map(saved);
+    }
+
+    public SkillTemplateDto updateSkillTemplate(SkillTemplateDto dto) {
+        SkillTemplate skill = skillTemplateRepository.findById(dto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Skill with id: " + dto.getName() + " not found!"));
+        skill.setName(dto.getName());
+        skill.setDescription(dto.getDescription());
+        skill.setRelatedAttribute(dto.getRelatedAttribute());
+        SkillTemplate updated = skillTemplateRepository.save(skill);
+        return skillMapper.map(updated);
+    }
+
+    public void deleteSkillTemplate(String id) {
+        SkillTemplate skill = skillTemplateRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Skill with id: " + id + " not found!"));
+        skillTemplateRepository.delete(skill);
     }
 }

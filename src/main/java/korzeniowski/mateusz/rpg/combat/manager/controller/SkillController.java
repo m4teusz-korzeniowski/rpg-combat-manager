@@ -1,7 +1,6 @@
 package korzeniowski.mateusz.rpg.combat.manager.controller;
 
 import jakarta.validation.Valid;
-import korzeniowski.mateusz.rpg.combat.manager.model.skill.SkillTemplate;
 import korzeniowski.mateusz.rpg.combat.manager.model.skill.SkillTemplateDto;
 import korzeniowski.mateusz.rpg.combat.manager.service.SkillService;
 import org.springframework.http.HttpStatus;
@@ -27,9 +26,9 @@ public class SkillController {
         return ResponseEntity.ok(skills);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<SkillTemplateDto> getSkillByName(@PathVariable(value = "name") String name) {
-        SkillTemplateDto skill = skillService.getSkillTemplateByName(name);
+    @GetMapping("/{id}")
+    public ResponseEntity<SkillTemplateDto> getSkillById(@PathVariable(value = "id") String id) {
+        SkillTemplateDto skill = skillService.getSkillTemplateById(id);
         return ResponseEntity.ok(skill);
     }
 
@@ -38,5 +37,18 @@ public class SkillController {
         SkillTemplateDto created = skillService.createSkillTemplate(skill);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteSkillById(@PathVariable(value = "id") String id) {
+        skillService.deleteSkillTemplate(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<SkillTemplateDto> updateSkill(@RequestBody @Valid SkillTemplateDto skill) {
+        SkillTemplateDto updated = skillService.updateSkillTemplate(skill);
+        return ResponseEntity.ok(updated);
+    }
+
 
 }

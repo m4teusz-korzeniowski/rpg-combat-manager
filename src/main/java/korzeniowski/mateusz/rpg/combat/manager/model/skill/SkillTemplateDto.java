@@ -1,6 +1,6 @@
 package korzeniowski.mateusz.rpg.combat.manager.model.skill;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,14 @@ import lombok.Data;
 @AllArgsConstructor
 public class SkillTemplateDto {
 
-    @NotNull
+    private String id;
+    @NotBlank
+    @Size(min = 1, max = 50)
     private String name;
-    @NotNull
-    @Size(max = 1000)
+    @NotBlank
+    @Size(min = 1, max = 1500)
     private String description;
-    @NotNull
+    @NotBlank
+    @Size(min = 1, max = 50)
     private String relatedAttribute;
 }
