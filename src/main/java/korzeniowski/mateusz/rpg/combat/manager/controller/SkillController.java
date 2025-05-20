@@ -45,9 +45,8 @@ public class SkillController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SkillTemplateDto> updateSkill(
-            @PathVariable(value = "id") String id,
-            @RequestBody @Valid SkillTemplateDto skill) {
+    public ResponseEntity<SkillTemplateDto> updateSkill(@PathVariable(value = "id") String id,
+                                                        @RequestBody @Valid SkillTemplateDto skill) {
         SkillTemplateDto updated = skillService.updateSkillTemplate(skill, id);
         return ResponseEntity.ok(updated);
     }
