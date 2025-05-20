@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: rpg-combat-manager
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: warhammerdb
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
