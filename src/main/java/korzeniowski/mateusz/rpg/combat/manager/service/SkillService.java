@@ -25,7 +25,7 @@ public class SkillService {
         return skillTemplateRepository.findAll()
                 .stream()
                 .map(skillMapper::map)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public SkillTemplateDto getSkillTemplateByName(String name) {
@@ -46,9 +46,9 @@ public class SkillService {
         return skillMapper.map(saved);
     }
 
-    public SkillTemplateDto updateSkillTemplate(SkillTemplateDto dto) {
-        SkillTemplate skill = skillTemplateRepository.findById(dto.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Skill with id: " + dto.getName() + " not found!"));
+    public SkillTemplateDto updateSkillTemplate(SkillTemplateDto dto, String id) {
+        SkillTemplate skill = skillTemplateRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Skill with id: " + id + " not found!"));
         skill.setName(dto.getName());
         skill.setDescription(dto.getDescription());
         skill.setRelatedAttribute(dto.getRelatedAttribute());
