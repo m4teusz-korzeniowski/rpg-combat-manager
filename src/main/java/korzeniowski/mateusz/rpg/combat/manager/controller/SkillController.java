@@ -1,5 +1,6 @@
 package korzeniowski.mateusz.rpg.combat.manager.controller;
 
+import jakarta.validation.Valid;
 import korzeniowski.mateusz.rpg.combat.manager.model.skill.SkillTemplate;
 import korzeniowski.mateusz.rpg.combat.manager.model.skill.SkillTemplateDto;
 import korzeniowski.mateusz.rpg.combat.manager.service.SkillService;
@@ -33,7 +34,7 @@ public class SkillController {
     }
 
     @PostMapping
-    public ResponseEntity<SkillTemplateDto> createSkill(@RequestBody SkillTemplateDto skill) {
+    public ResponseEntity<SkillTemplateDto> createSkill(@RequestBody @Valid SkillTemplateDto skill) {
         SkillTemplateDto created = skillService.createSkillTemplate(skill);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }

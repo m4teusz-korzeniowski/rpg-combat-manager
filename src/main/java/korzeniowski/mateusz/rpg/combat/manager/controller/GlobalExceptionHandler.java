@@ -4,6 +4,7 @@ import org.springframework.dao.DuplicateKeyException;
 import korzeniowski.mateusz.rpg.combat.manager.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -25,5 +26,14 @@ public class GlobalExceptionHandler {
         Map<String, Object> body = new HashMap<>();
         body.put("message", ex.getMessage());
         return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException ex) {
+        Map<String, Object> body = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                body.put(error.getField(), error.getDefaultMessage())
+        );
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 }
