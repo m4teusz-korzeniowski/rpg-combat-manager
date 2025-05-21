@@ -33,20 +33,20 @@ public class EffectController {
     }
 
     @PostMapping
-    public ResponseEntity<EffectDto> createTalent(@RequestBody @Valid EffectDto effect) {
+    public ResponseEntity<EffectDto> createEffect(@RequestBody @Valid EffectDto effect) {
         EffectDto created = effectService.createEffect(effect);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EffectDto> updateTalent(@PathVariable("id") String id,
+    public ResponseEntity<EffectDto> updateEffect(@PathVariable("id") String id,
                                                   @RequestBody @Valid EffectDto effect) {
         EffectDto updated = effectService.updateEffect(id, effect);
         return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTalent(@PathVariable("id") String id) {
+    public ResponseEntity<Void> deleteEffect(@PathVariable("id") String id) {
         effectService.deleteEffect(id);
         return ResponseEntity.noContent().build();
     }
