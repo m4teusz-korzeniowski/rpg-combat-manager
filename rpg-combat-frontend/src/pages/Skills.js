@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 function Skills() {
     const [skills, setSkills] = useState([]);
@@ -12,23 +12,42 @@ function Skills() {
                 setLoading(false);
             })
             .catch(error => {
-                console.error('Błąd podczas pobierania skilli:', error);
+                console.error('Error', error);
                 setLoading(false);
             });
     }, []);
 
     if (loading) {
-        return <p>Ładowanie umiejętności...</p>;
+        return <p>Ładowanie...</p>;
     }
 
     return (
-        <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+        <div className="container p-1 my-1 bg-light rounded shadow-sm">
             <h2>Umiejętności</h2>
-            <ul>
+            <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nazwa:</th>
+                    <th>Cecha:</th>
+                    <th>Opis:</th>
+                </tr>
+                </thead>
+                <tbody>
                 {skills.map(skill => (
-                    <li key={skill.id}>{skill.name}</li>
+                    <tr key={skill.id}>
+                        <td>
+                            {skill.name}
+                        </td>
+                        <td>
+                            {skill.relatedAttribute}
+                        </td>
+                        <td>
+                            {skill.description}
+                        </td>
+                    </tr>
                 ))}
-            </ul>
+                </tbody>
+            </table>
         </div>
     );
 }

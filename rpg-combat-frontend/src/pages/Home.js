@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 function Home() {
     return (
-        <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-            <h1>RPG Combat</h1>
-            <p>Witaj w grze RPG. Wybierz opcję:</p>
+        <div className='p-3'>
+            <h1>RPG Combat Manager</h1>
+            <p>Wybierz opcję:</p>
             <Link to="/skills">
-                <button>Przejdź do umiejętności</button>
+                <Button variant="primary">Baza umiejętności</Button>
             </Link>
         </div>
     );
