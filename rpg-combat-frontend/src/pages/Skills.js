@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { formatAttribute } from '../utils/attributeMapper';
 
 function Skills() {
     const [skills, setSkills] = useState([]);
@@ -39,7 +40,7 @@ function Skills() {
                             {skill.name}
                         </td>
                         <td>
-                            {skill.relatedAttribute}
+                            {formatAttribute(skill.relatedAttribute, 'label')}
                         </td>
                         <td>
                             {skill.description}
