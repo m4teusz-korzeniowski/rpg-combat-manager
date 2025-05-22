@@ -15,8 +15,8 @@ public class EffectDto {
     @Size(min = 1, max = 50)
     private String name;
     @NotBlank
-    @Size(min = 1, max = 1500)
+    @Size(min = 1, max = 2000)
     private String description;
     private List<@NotBlank @Size(min = 1, max = 50) String> affectedAttributes;
-    private List<@NotBlank @Size(min = 1, max = 50) String> affectedSkills;
+    private List<@NotBlank @Size(min = 1, max = 100) String> affectedSkills;
 }

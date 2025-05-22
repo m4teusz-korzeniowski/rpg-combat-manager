@@ -11,10 +11,10 @@ public class SkillTemplateDto {
 
     private String id;
     @NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 100)
     private String name;
     @NotBlank
-    @Size(min = 1, max = 1500)
+    @Size(min = 1, max = 2000)
     private String description;
     @NotBlank
     @Size(min = 1, max = 50)

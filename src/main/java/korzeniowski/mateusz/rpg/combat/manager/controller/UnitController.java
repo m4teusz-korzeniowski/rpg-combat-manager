@@ -1,6 +1,6 @@
 package korzeniowski.mateusz.rpg.combat.manager.controller;
 
-import korzeniowski.mateusz.rpg.combat.manager.model.character.Unit;
+import korzeniowski.mateusz.rpg.combat.manager.model.character.UnitTemplate;
 import korzeniowski.mateusz.rpg.combat.manager.repository.UnitRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ public class UnitController {
     }
 
     @GetMapping
-    public List<Unit> getAllCharacters() {
+    public List<UnitTemplate> getAllCharacters() {
         return unitRepository.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Unit> createCharacter(@RequestBody Unit unit) {
-        Unit saved = unitRepository.save(unit);
+    public ResponseEntity<UnitTemplate> createCharacter(@RequestBody UnitTemplate unit) {
+        UnitTemplate saved = unitRepository.save(unit);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 }
