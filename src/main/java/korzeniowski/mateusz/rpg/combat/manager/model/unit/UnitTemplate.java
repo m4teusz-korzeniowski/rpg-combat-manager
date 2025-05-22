@@ -1,4 +1,4 @@
-package korzeniowski.mateusz.rpg.combat.manager.model.character;
+package korzeniowski.mateusz.rpg.combat.manager.model.unit;
 
 import korzeniowski.mateusz.rpg.combat.manager.model.skill.Skill;
 import lombok.Data;

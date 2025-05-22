@@ -51,7 +51,7 @@ public class SkillService {
                 .orElseThrow(() -> new ResourceNotFoundException("Skill with id: " + id + " not found!"));
         skill.setName(dto.getName());
         skill.setDescription(dto.getDescription());
-        skill.setRelatedAttribute(dto.getRelatedAttribute());
+        skill.setRelatedAttribute(dto.getRelatedAttribute().name());
         SkillTemplate updated = skillTemplateRepository.save(skill);
         return skillMapper.map(updated);
     }

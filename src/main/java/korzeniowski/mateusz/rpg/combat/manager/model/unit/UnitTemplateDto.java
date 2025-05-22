@@ -1,4 +1,4 @@
-package korzeniowski.mateusz.rpg.combat.manager.model.character;
+package korzeniowski.mateusz.rpg.combat.manager.model.unit;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

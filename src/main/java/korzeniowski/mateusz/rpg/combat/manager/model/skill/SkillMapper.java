@@ -1,5 +1,6 @@
 package korzeniowski.mateusz.rpg.combat.manager.model.skill;
 
+import korzeniowski.mateusz.rpg.combat.manager.model.unit.AttributeKey;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,7 +11,7 @@ public class SkillMapper {
                 skill.getId(),
                 skill.getName(),
                 skill.getDescription(),
-                skill.getRelatedAttribute());
+                AttributeKey.valueOf(skill.getRelatedAttribute()));
     }
 
     public SkillTemplate map(SkillTemplateDto dto) {
@@ -18,7 +19,7 @@ public class SkillMapper {
         skill.setId(dto.getId());
         skill.setName(dto.getName());
         skill.setDescription(dto.getDescription());
-        skill.setRelatedAttribute(dto.getRelatedAttribute());
+        skill.setRelatedAttribute(dto.getRelatedAttribute().name());
         return skill;
     }
 
