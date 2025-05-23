@@ -26,7 +26,7 @@ function Skills() {
         <div className="container p-1 my-1 bg-light rounded shadow-sm">
             <h2>Umiejętności</h2>
             <table className="table table-bordered">
-                <thead>
+                <thead className="table-header">
                 <tr>
                     <th>Nazwa:</th>
                     <th>Cecha:</th>

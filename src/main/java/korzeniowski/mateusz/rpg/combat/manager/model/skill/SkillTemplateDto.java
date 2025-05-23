@@ -15,8 +15,7 @@ public class SkillTemplateDto {
     @NotBlank
     @Size(min = 1, max = 100)
     private String name;
-    @NotBlank
-    @Size(min = 1, max = 2000)
+    @Size(max = 2000)
     private String description;
     @NotNull
     private AttributeKey relatedAttribute;

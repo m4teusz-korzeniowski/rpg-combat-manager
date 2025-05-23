@@ -1,5 +1,6 @@
 package korzeniowski.mateusz.rpg.combat.manager.model.effect;
 
+import korzeniowski.mateusz.rpg.combat.manager.model.unit.AttributeKey;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -16,6 +17,5 @@ public class EffectTemplate {
     private String name;
     private String description;
 
-    private List<String> affectedAttributes;
-    private List<String> affectedSkills;
+    private List<AttributeKey> affectedAttributes;
 }

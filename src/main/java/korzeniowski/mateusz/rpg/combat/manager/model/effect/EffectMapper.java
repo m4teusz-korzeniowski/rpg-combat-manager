@@ -10,8 +10,7 @@ public class EffectMapper {
                 effect.getId(),
                 effect.getName(),
                 effect.getDescription(),
-                effect.getAffectedAttributes(),
-                effect.getAffectedSkills());
+                effect.getAffectedAttributes());
     }
 
     public EffectTemplate map(EffectDto dto) {
@@ -20,7 +19,6 @@ public class EffectMapper {
         effect.setName(dto.getName());
         effect.setDescription(dto.getDescription());
         effect.setAffectedAttributes(dto.getAffectedAttributes());
-        effect.setAffectedSkills(dto.getAffectedSkills());
         return effect;
     }
 }

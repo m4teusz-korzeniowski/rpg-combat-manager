@@ -1,7 +1,9 @@
 package korzeniowski.mateusz.rpg.combat.manager.model.effect;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import korzeniowski.mateusz.rpg.combat.manager.model.unit.AttributeKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,9 +16,7 @@ public class EffectDto {
     @NotBlank
     @Size(min = 1, max = 50)
     private String name;
-    @NotBlank
-    @Size(min = 1, max = 2000)
+    @Size(max = 2000)
     private String description;
-    private List<@NotBlank @Size(min = 1, max = 50) String> affectedAttributes;
-    private List<@NotBlank @Size(min = 1, max = 100) String> affectedSkills;
+    private List<@NotNull AttributeKey> affectedAttributes;
 }

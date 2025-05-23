@@ -16,5 +16,5 @@ public class Talent {
     private String name;
     private String description;
 
-    private List<String> relatedSkills;
+    private List<String> relatedSkillIds;
 }

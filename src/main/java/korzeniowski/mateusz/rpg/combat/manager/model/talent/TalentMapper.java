@@ -10,7 +10,7 @@ public class TalentMapper {
                 talent.getId(),
                 talent.getName(),
                 talent.getDescription(),
-                talent.getRelatedSkills()
+                talent.getRelatedSkillIds()
         );
     }
 
@@ -19,7 +19,7 @@ public class TalentMapper {
         talent.setId(dto.getId());
         talent.setName(dto.getName());
         talent.setDescription(dto.getDescription());
-        talent.setRelatedSkills(dto.getRelatedSkills());
+        talent.setRelatedSkillIds(dto.getRelatedSkillIds());
         return talent;
     }
 }

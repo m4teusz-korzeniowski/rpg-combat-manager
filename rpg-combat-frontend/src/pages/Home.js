@@ -9,6 +9,9 @@ function Home() {
             <Link to="/skills">
                 <Button variant="primary">Baza umiejętności</Button>
             </Link>
+            <Link to="/skills/add">
+                <Button variant="primary">Dodaj umiejętność</Button>
+            </Link>
         </div>
     );
 }

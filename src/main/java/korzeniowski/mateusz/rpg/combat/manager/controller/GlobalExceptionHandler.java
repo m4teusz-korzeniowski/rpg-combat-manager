@@ -24,7 +24,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateKeyException.class)
     public ResponseEntity<?> handleDuplicateKeyException(DuplicateKeyException ex) {
         Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+        if (ex.getMessage().contains("name")) {
+            body.put("name", "umiejętność o tej nazwie już istnieje!");
+        }
         return new ResponseEntity<>(body, HttpStatus.CONFLICT);
     }
 
