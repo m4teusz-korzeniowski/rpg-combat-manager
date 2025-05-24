@@ -43,7 +43,6 @@ public class EffectService {
                 .orElseThrow(() -> new ResourceNotFoundException("Effect with id " + id + " not found"));
         effect.setName(dto.getName());
         effect.setDescription(dto.getDescription());
-        effect.setAffectedSkills(dto.getAffectedSkills());
         effect.setAffectedAttributes(dto.getAffectedAttributes());
         return effectMapper.map(effect);
     }

@@ -7,10 +7,7 @@ function Home() {
             <h1>RPG Combat Manager</h1>
             <p>Wybierz opcję:</p>
             <Link to="/skills">
-                <Button variant="primary">Baza umiejętności</Button>
-            </Link>
-            <Link to="/skills/add">
-                <Button variant="primary">Dodaj umiejętność</Button>
+                <Button variant="primary">Umiejętności</Button>
             </Link>
         </div>
     );

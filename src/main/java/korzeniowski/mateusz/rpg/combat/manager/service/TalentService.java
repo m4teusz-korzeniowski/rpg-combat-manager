@@ -43,7 +43,6 @@ public class TalentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Talent with id " + id + " not found"));
         talent.setName(dto.getName());
         talent.setDescription(dto.getDescription());
-        talent.setRelatedSkills(dto.getRelatedSkills());
         Talent updated = talentRepository.save(talent);
         return talentMapper.map(updated);
     }
