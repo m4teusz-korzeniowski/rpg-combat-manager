@@ -50,9 +50,10 @@ function Skills() {
                                 {formatAttribute(skill.relatedAttribute, 'label')}
                             </td>
                             <td>
-                                <Link to="/skills/edit">
+                                <Link to={`/skills/edit/${skill.id}`}>
                                     <Button className="btn btn-warning">Edytuj</Button>
                                 </Link>
+
                                 <DeleteSkillButton
                                     skillId={skill.id}
                                     onDeleted={(id) =>
