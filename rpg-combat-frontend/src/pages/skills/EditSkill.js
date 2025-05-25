@@ -1,34 +1,48 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Form, Button, Container} from "react-bootstrap";
-import {attributeMap} from "../utils/attributeMapper";
-import {createSkill} from "../api/skillService"
+import {attributeMap} from "../../utils/attributeMapper";
+import {editSkill} from "../../api/skillService"
+import {getSkill} from "../../api/skillService";
+import {useParams} from "react-router-dom";
 
-function AddSkill() {
+function EditSkill() {
+    const {id} = useParams();
     const [name, setName] = useState('');
-    const attributeKeys = Object.keys(attributeMap).filter((key) => !['W', 'M'].includes(key));
-    const [relatedAttribute, setRelatedAttribute] = useState(attributeKeys[0] || "");
+    const [relatedAttribute, setRelatedAttribute] = useState('');
     const [description, setDescription] = useState('');
-    const navigate = useNavigate();
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        getSkill(id)
+            .then(skill => {
+                setName(skill.name);
+                setRelatedAttribute(skill.relatedAttribute);
+                setDescription(skill.description);
+            })
+            .catch(err => {
+                console.error("Błąd ładowania umiejętności: ",err);
+            });
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newSkill = {
+        const editedSkill = {
             name,
             relatedAttribute,
             description,
         };
 
-        createSkill(newSkill)
+        editSkill(id, editedSkill)
             .then(() => {
-                alert('Dodano nową umiejętność!');
+                alert('Edytowano umiejętność!');
                 navigate('/skills');
             })
             .catch((err) => {
                 setErrors(err);
-                console.error('Nie udało się dodać umiejętności: ', err);
+                console.error('Nie udało się edytować umiejętności: ', err);
             });
     };
 
@@ -37,10 +51,10 @@ function AddSkill() {
             <div className="container mb-3 p-1 my-1 bg-light rounded shadow-sm">
                 <Link to="/">Strona główna </Link>
                 <span>-></span>
-                <Link to="/skills"> Umiejętności</Link>
+                <Link to="/Skills"> Umiejętności</Link>
             </div>
             <Container className="container p-1 my-1 bg-light rounded shadow-sm">
-                <h2>Dodaj nową umiejętność</h2>
+                <h2>Edytuj umiejętność</h2>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Nazwa:</Form.Label>
@@ -84,11 +98,11 @@ function AddSkill() {
                             {errors.description}
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Button type="submit">Dodaj</Button>
+                    <Button type="submit">Zapisz zmiany</Button>
                 </Form>
             </Container>
         </>
     );
 }
 
-export default AddSkill;
+export default EditSkill;

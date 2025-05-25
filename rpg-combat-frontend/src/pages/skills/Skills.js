@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
-import {formatAttribute} from '../utils/attributeMapper';
+import {formatAttribute} from '../../utils/attributeMapper';
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
-import {getSkills} from "../api/skillService";
-import {DeleteSkillButton} from "../components/DeleteSkillButton";
+import {getSkills} from "../../api/skillService";
+import {DeleteSkillButton} from "../../components/DeleteSkillButton";
 
 function Skills() {
     const [skills, setSkills] = useState([]);
@@ -37,7 +37,7 @@ function Skills() {
                     <tr>
                         <th>Nazwa:</th>
                         <th>Cecha:</th>
-                        <th>Działanie:</th>
+                        <th className="text-center">Działanie:</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,7 +49,7 @@ function Skills() {
                             <td>
                                 {formatAttribute(skill.relatedAttribute, 'label')}
                             </td>
-                            <td>
+                            <td className="text-center d-flex justify-content-center gap-3">
                                 <Link to={`/skills/edit/${skill.id}`}>
                                     <Button className="btn btn-warning">Edytuj</Button>
                                 </Link>

@@ -1,8 +1,8 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home';
-import Skills from './pages/Skills';
-import AddSkill from "./pages/AddSkill";
-import EditSkill from "./pages/EditSkill";
+import Skills from './pages/skills/Skills';
+import AddSkill from "./pages/skills/AddSkill";
+import EditSkill from "./pages/skills/EditSkill";
 
 function App() {
     return (
