@@ -12,7 +12,7 @@ export function UnitTemplateTable({ unitTemplate }: Props) {
     );
 
     const getAttributeValue = (key: AttributeKey): number | string => {
-        const found = unitTemplate.attributes.find(attr => attr.key === key);
+        const found = unitTemplate.attributes?.find(attr => attr.key === key);
         return found ? found.value : '';
     };
 
@@ -43,7 +43,7 @@ export function UnitTemplateTable({ unitTemplate }: Props) {
 
             <div className="border p-3 mb-2">
                 <strong><em>Umiejętności:</em></strong>{" "}
-                {unitTemplate.skills
+                {(unitTemplate.skills ?? [])
                     .map(skill =>
                         `${skill.name} (${attributeMap[skill.relatedAttribute as AttributeKey]?.short || skill.relatedAttribute}) +${skill.advances}`
                     )
@@ -52,7 +52,7 @@ export function UnitTemplateTable({ unitTemplate }: Props) {
 
             <div className="border p-3">
                 <strong><em>Zdolności:</em></strong>{" "}
-                {unitTemplate.talents.map(t => t.name).join(", ")}
+                {(unitTemplate.talents ?? []).map(t => t.name).join(", ")}
             </div>
         </div>
     );

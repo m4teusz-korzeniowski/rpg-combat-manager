@@ -13,7 +13,7 @@ function Home() {
                 </Link>
             </div>
             <div>
-                <Link to="/Units">
+                <Link to="/units">
                     <Button variant="primary">Baza jednostek</Button>
                 </Link>
             </div>
