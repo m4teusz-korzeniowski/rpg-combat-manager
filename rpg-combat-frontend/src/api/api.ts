@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:8080';
 
-export async function apiFetch(path, options = {}) {
+export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
     const response = await fetch(`${BASE_URL}${path}`, {
         headers: {
             'Content-Type': 'application/json',
@@ -9,10 +9,11 @@ export async function apiFetch(path, options = {}) {
         ...options,
     });
 
-    let responseData = null;
+    let responseData: any = null;
     try {
         responseData = await response.json();
     } catch (err) {
+        console.log(err);
     }
 
     if (!response.ok) {

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TalentMapper {
 
-    public TalentDto map(Talent talent) {
+    public TalentDto map(TalentTemplate talent) {
         return new TalentDto(
                 talent.getId(),
                 talent.getName(),
@@ -14,8 +14,8 @@ public class TalentMapper {
         );
     }
 
-    public Talent map(TalentDto dto) {
-        Talent talent = new Talent();
+    public TalentTemplate map(TalentDto dto) {
+        TalentTemplate talent = new TalentTemplate();
         talent.setId(dto.getId());
         talent.setName(dto.getName());
         talent.setDescription(dto.getDescription());

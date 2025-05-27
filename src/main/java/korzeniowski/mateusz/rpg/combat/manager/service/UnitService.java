@@ -44,7 +44,7 @@ public class UnitService {
         unit.setName(dto.getName());
         unit.setSkills(dto.getSkills());
         unit.setAttributes(dto.getAttributes());
-        unit.setTalentIds(dto.getTalentIds());
+        unit.setTalents(dto.getTalents());
         UnitTemplate updated = unitRepository.save(unit);
         return unitMapper.map(updated);
     }

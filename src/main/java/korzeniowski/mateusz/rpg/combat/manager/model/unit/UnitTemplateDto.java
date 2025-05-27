@@ -4,6 +4,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import korzeniowski.mateusz.rpg.combat.manager.model.skill.Skill;
+import korzeniowski.mateusz.rpg.combat.manager.model.talent.Talent;
+import korzeniowski.mateusz.rpg.combat.manager.model.talent.TalentTemplate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,5 +21,5 @@ public class UnitTemplateDto {
     @Size(min = 9)
     private List<@Valid Attribute> attributes;
     private List<@Valid Skill> skills;
-    private List<@NotBlank String> talentIds;
+    private List<@Valid Talent> talents;
 }

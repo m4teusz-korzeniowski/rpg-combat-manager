@@ -1,39 +1,55 @@
-import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {Form, Button, Container} from "react-bootstrap";
-import {attributeMap} from "../../utils/attributeMapper";
-import {editSkill} from "../../api/skillService"
-import {getSkill} from "../../api/skillService";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Form, Button, Container } from "react-bootstrap";
+import { attributeMap, AttributeKey } from "../../utils/attributeMapper";
+import { editSkill, getSkill } from "../../api/skillService";
+import React from "react";
+import {SkillTemplate} from "../../model/skillTemplate";
+
+interface Skill {
+    name: string;
+    relatedAttribute: AttributeKey;
+    description: string;
+}
+
+type ErrorMessages = {
+    name?: string;
+    relatedAttribute?: string;
+    description?: string;
+};
 
 function EditSkill() {
-    const {id} = useParams();
-    const [name, setName] = useState('');
-    const [relatedAttribute, setRelatedAttribute] = useState('');
-    const [description, setDescription] = useState('');
-    const [errors, setErrors] = useState({});
+    const { id } = useParams<{ id: string }>();
+    const [name, setName] = useState<string>('');
+    const [relatedAttribute, setRelatedAttribute] = useState<AttributeKey>('S');
+    const [description, setDescription] = useState<string>('');
+    const [errors, setErrors] = useState<ErrorMessages>({});
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!id) return;
+
         getSkill(id)
-            .then(skill => {
+            .then((skill: SkillTemplate) => {
                 setName(skill.name);
-                setRelatedAttribute(skill.relatedAttribute);
+                setRelatedAttribute(skill.relatedAttribute as AttributeKey);
                 setDescription(skill.description);
             })
             .catch(err => {
-                console.error("Błąd ładowania umiejętności: ",err);
+                console.error("Błąd ładowania umiejętności: ", err);
             });
-    }, []);
+    }, [id]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const editedSkill = {
+        const editedSkill: Skill = {
             name,
             relatedAttribute,
             description,
         };
+
+        if (!id) return;
 
         editSkill(id, editedSkill)
             .then(() => {
@@ -46,12 +62,16 @@ function EditSkill() {
             });
     };
 
+    const attributeKeys = Object.keys(attributeMap).filter(
+        (key): key is AttributeKey => !['W', 'M'].includes(key)
+);
+
     return (
         <>
             <div className="container mb-3 p-1 my-1 bg-light rounded shadow-sm">
-                <Link to="/">Strona główna </Link>
-                <span>-></span>
-                <Link to="/Skills"> Umiejętności</Link>
+                <Link to="/">Strona główna</Link>
+                <span> → </span>
+                <Link to="/skills">Umiejętności</Link>
             </div>
             <Container className="container p-1 my-1 bg-light rounded shadow-sm">
                 <h2>Edytuj umiejętność</h2>
@@ -68,23 +88,23 @@ function EditSkill() {
                             {errors.name}
                         </Form.Control.Feedback>
                     </Form.Group>
+
                     <Form.Group className="mb-3">
                         <Form.Label>Cecha bazowa:</Form.Label>
                         <Form.Control
                             as="select"
                             value={relatedAttribute}
-                            onChange={(e) => setRelatedAttribute(e.target.value)}
+                            onChange={(e) => setRelatedAttribute(e.target.value as AttributeKey)}
                             isInvalid={!!errors.relatedAttribute}
                         >
-                            {Object.keys(attributeMap)
-                                .filter((key) => !['W', 'M'].includes(key))
-                                .map((key) => (
-                                    <option key={key} value={key}>
-                                        {attributeMap[key].label}
-                                    </option>
-                                ))}
+                            {attributeKeys.map((key) => (
+                                <option key={key} value={key}>
+                                    {attributeMap[key].label}
+                                </option>
+                            ))}
                         </Form.Control>
                     </Form.Group>
+
                     <Form.Group className="mb-3">
                         <Form.Label>Opis:</Form.Label>
                         <Form.Control
@@ -98,6 +118,7 @@ function EditSkill() {
                             {errors.description}
                         </Form.Control.Feedback>
                     </Form.Group>
+
                     <Button type="submit">Zapisz zmiany</Button>
                 </Form>
             </Container>

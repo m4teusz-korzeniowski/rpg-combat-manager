@@ -1,20 +1,14 @@
 package korzeniowski.mateusz.rpg.combat.manager.model.talent;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
-@Document(collection = "talent")
 @Data
+@AllArgsConstructor
 public class Talent {
-    @Id
+    @NotBlank
     private String id;
-    @Indexed(unique = true)
+    @NotBlank
     private String name;
-    private String description;
-
-    private List<String> relatedSkillIds;
 }

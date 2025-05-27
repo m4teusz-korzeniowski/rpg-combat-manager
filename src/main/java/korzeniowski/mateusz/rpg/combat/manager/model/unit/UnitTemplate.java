@@ -1,6 +1,8 @@
 package korzeniowski.mateusz.rpg.combat.manager.model.unit;
 
 import korzeniowski.mateusz.rpg.combat.manager.model.skill.Skill;
+import korzeniowski.mateusz.rpg.combat.manager.model.talent.Talent;
+import korzeniowski.mateusz.rpg.combat.manager.model.talent.TalentTemplate;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -18,5 +20,5 @@ public class UnitTemplate {
     private String name;
     private List<Attribute> attributes;
     private List<Skill> skills;
-    private List<String> talentIds;
+    private List<Talent> talents;
 }

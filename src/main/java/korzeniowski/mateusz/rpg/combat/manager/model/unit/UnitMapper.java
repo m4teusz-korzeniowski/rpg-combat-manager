@@ -11,7 +11,7 @@ public class UnitMapper {
                 unit.getName(),
                 unit.getAttributes(),
                 unit.getSkills(),
-                unit.getTalentIds());
+                unit.getTalents());
     }
 
     public UnitTemplate map(UnitTemplateDto dto) {
@@ -20,7 +20,7 @@ public class UnitMapper {
         unit.setName(dto.getName());
         unit.setAttributes(dto.getAttributes());
         unit.setSkills(dto.getSkills());
-        unit.setTalentIds(dto.getTalentIds());
+        unit.setTalents(dto.getTalents());
         return unit;
     }
 }
